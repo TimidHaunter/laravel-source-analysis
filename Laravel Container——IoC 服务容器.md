@@ -28,22 +28,20 @@ Laravel服务容器主要承担两个作用：绑定与解析。
 
 - 绑定自身
 
-
-  ```php
-  $this->app->bind('App\Services\RedisEventPusher', null);
-  ```
+```php
+$this->app->bind('App\Services\RedisEventPusher', null);
+```
 
 - 绑定闭包
 
-
-  ```php
+```php
 $this->app->bind('name', function () {
     return 'Taylor';
-});//闭包返回变量
+}); //闭包返回变量
 
 $this->app->bind('HelpSpot\API', function () {
     return HelpSpot\API::class;
-});//闭包直接提供类实现方式
+}); //闭包直接提供类实现方式
 
 public function testSharedClosureResolution()
 {
@@ -63,12 +61,12 @@ $this->app->bind('HelpSpot\API', function () {
 $this->app->bind('HelpSpot\API', function ($app) {
     return new HelpSpot\API($app->make('HttpClient'));
 });//闭包返回需要依赖注入的类
-  ```
+```
 
 - 绑定接口
 
 
-  ```php
+```php
 public function testCanBuildWithoutParameterStackWithConstructors()
 {
     $container = new Container;
@@ -95,7 +93,7 @@ class ContainerDependentStub
         $this->impl = $impl;
     }
 }
-  ```
+```
 
 这三种绑定方式中，第一种绑定自身一般用于绑定单例。
 ### bindif绑定
